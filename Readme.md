@@ -6,6 +6,24 @@ Minecraft Command line API to send NMS raw commands using RCON protocole.
 
 ## Quick start
 
+### Before Start
+
+Download and install [Node.js]([https://docs.docker.com/get-started/get-docker/](https://nodejs.org/en/download)).
+
+Copy and past `.example.env` file to `.env`, then modify environnement variables you need to configure:
+
+```sh
+HOST=0.0.0.0
+PORT=3000
+RCON_HOST=0.0.0.0
+RCON_PORT=25575
+RCON_PASSWORD=secret
+RCON_TIMEOUT=10000
+PUBLIC_API_URL=http://0.0.0.0:3000
+```
+
+### Installation And Run
+
 ```sh
 # Install dependencies
 npm ci
@@ -13,8 +31,13 @@ npm ci
 # Run application as dev
 npm run dev
 
+---
+
 # Build application (optional)
 npm run build
+
+# Run application as production (optional)
+node build/index.js
 ```
 
 ### How to deploy with Docker
