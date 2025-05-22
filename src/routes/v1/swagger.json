@@ -105,7 +105,7 @@
 				"properties": {
 					"command": {
 						"type": "string",
-						"example": "set weather clear"
+						"example": "weather clear"
 					}
 				},
 				"xml": {
