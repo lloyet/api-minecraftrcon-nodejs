@@ -38,6 +38,7 @@
 		"@types/cors": "^2.8.17",
 		"@types/express": "^5.0.0",
 		"@types/node": "^22.10.7",
+		"@types/swagger-ui-express": "^4.1.8",
 		"@types/ws": "^8.5.13",
 		"@typescript-eslint/eslint-plugin": "^8.21.0",
 		"@typescript-eslint/parser": "^8.21.0",
@@ -58,6 +59,7 @@
 		"helmet": "^8.0.0",
 		"pino-http": "^10.4.0",
 		"rcon-client": "^4.2.5",
+		"swagger-ui-express": "^5.0.1",
 		"ws": "^8.18.0"
 	}
 }

@@ -17,4 +17,4 @@ WORKDIR /app
 COPY --from=build /usr/src/app/node_modules /app/node_modules
 COPY --from=build /usr/src/app/build /app
 
-ENTRYPOINT ["node", "--unhandled-rejections=strict", "index.js"]
+CMD ["node", "--unhandled-rejections=strict", "index.js"]

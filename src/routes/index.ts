@@ -1,14 +1,11 @@
 import { Router } from "express";
 
-import healthController from "$app/controllers/healthController";
+import v1Router from "$app/routes/v1";
 import * as errorController from "$app/controllers/errorController";
-
-import RconRouter from "$app/routes/rcon";
-import VersionRouter from "$app/routes/version";
+import healthController from "$app/controllers/healthController";
 
 export default Router()
 	.get("/", healthController)
-	.use("/rcon", RconRouter)
-	.use("/version", VersionRouter)
+	.use("/v1", v1Router)
 	.use(errorController.trigger)
 	.use(errorController.handler);

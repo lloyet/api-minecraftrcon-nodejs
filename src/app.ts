@@ -53,9 +53,9 @@ const app = express()
 	)
 	.use(cors())
 	.use(helmet())
-	.use(express.json())
-	.use(express.urlencoded({ extended: true }))
 	.use(compression({ threshold: 0 }))
+	.use(express.urlencoded({ extended: true }))
+	.use(express.json())
 	.use(router);
 
 const server = http.createServer(app).on("upgrade", (req, socket, head) => {
@@ -69,10 +69,6 @@ const server = http.createServer(app).on("upgrade", (req, socket, head) => {
 	wss.handleUpgrade(req, socket, head, (ws) => {
 		wss.emit("connection", ws, req);
 	});
-});
-
-process.on("exit", () => {
-	rconClient.end();
 });
 
 export default () => {

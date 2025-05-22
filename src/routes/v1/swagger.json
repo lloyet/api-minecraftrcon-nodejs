@@ -1,0 +1,195 @@
+{
+	"openapi": "3.0.4",
+	"info": {
+		"title": "Minecraft RCON - OpenAPI 3.0",
+		"description": "Welcome to Minecraft RCON API where you can send command line over RCON protcole.\n\n<ins>**With this API you can**</ins>:\n1. Send Minecraft command line using RCON.\n\nThis documentation is based on OpenAPI 3.0 standard.\n\nIf you find bugs or want to submit issue, please send an email to the main developer.\n\nImportant links:\n- [OpenSource API Node.js](https://github.com/lloyet/api-minecraftrcon-nodejs)",
+		"contact": {
+			"email": "contact@lloyet.dev"
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+		},
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://0.0.0.0:3000/v1"
+		}
+	],
+	"tags": [
+		{
+			"name": "command",
+			"description": "RCON command line."
+		}
+	],
+	"paths": {
+		"/rcon": {
+			"post": {
+				"tags": ["command"],
+				"summary": "Send RCON command line.",
+				"description": "Send fresh command using RCON protocole.",
+				"operationId": "sendCommand",
+				"requestBody": {
+					"description": "Send raw Minecraft command line using RCON.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CommandPost"
+							}
+						},
+						"application/x-www-form-urlencoded": {
+							"schema": {
+								"$ref": "#/components/schemas/CommandPost"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Opération réalisé avec succès.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Command"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/Command"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "ID fournis invalide",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorBadQuery"
+								}
+							}
+						}
+					},
+					"default": {
+						"description": "Erreur inconnue",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorUnknow"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Command": {
+				"type": "object",
+				"properties": {
+					"messaage": {
+						"type": "string",
+						"example": "weather set to clear"
+					}
+				},
+				"xml": {
+					"name": "Command"
+				}
+			},
+			"CommandPost": {
+				"type": "object",
+				"properties": {
+					"command": {
+						"type": "string",
+						"example": "set weather clear"
+					}
+				},
+				"xml": {
+					"name": "CommandPost"
+				}
+			},
+			"ErrorNotFound": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "number",
+						"example": 404
+					},
+					"message": {
+						"type": "string",
+						"example": "Can not found Entity"
+					}
+				},
+				"required": ["code", "message"]
+			},
+			"ErrorBadQuery": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "number",
+						"example": 400
+					},
+					"message": {
+						"type": "string",
+						"example": "Field health should be a number"
+					}
+				},
+				"required": ["code", "message"]
+			},
+			"ErrorUnknow": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "number",
+						"example": 500
+					},
+					"message": {
+						"type": "string",
+						"example": "Interval serveur error"
+					}
+				},
+				"required": ["code", "message"]
+			}
+		},
+		"requestBodies": {
+			"Entity": {
+				"description": "Objet nécessaire pour ajouter une nouvelle carte",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/Entity"
+						}
+					},
+					"application/xml": {
+						"schema": {
+							"$ref": "#/components/schemas/Entity"
+						}
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"petstore_auth": {
+				"type": "oauth2",
+				"flows": {
+					"implicit": {
+						"authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
+						"scopes": {
+							"write:pets": "modify pets in your account",
+							"read:pets": "read your pets"
+						}
+					}
+				}
+			},
+			"api_key": {
+				"type": "apiKey",
+				"name": "api_key",
+				"in": "header"
+			}
+		}
+	}
+}
