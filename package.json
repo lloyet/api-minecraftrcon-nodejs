@@ -4,7 +4,7 @@
 	"description": "minecraft rcon node.js api",
 	"main": "index.js",
 	"scripts": {
-		"dev": "NODE_ENV=development node --import=tsx --env-file=.env --watch --watch-preserve-output --watch-path=./src  index.ts",
+		"dev": "node --import=tsx --env-file=.env --watch --watch-preserve-output --watch-path=./src  index.ts",
 		"build": "tsc --build --clean && tsc --build --verbose && tsc-alias",
 		"preview": "node --unhandled-rejections=strict ./build/index.js",
 		"format": "prettier --write .",
